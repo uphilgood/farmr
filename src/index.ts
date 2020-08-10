@@ -5,6 +5,7 @@ import * as Vision from "@hapi/vision"
 import * as Joi from "@hapi/joi";;
 import { Server } from "@hapi/hapi";
 import { postEvents } from './controller/events'
+import CONFIGS from './util/configs'
 import fs from 'fs';
 import readline from 'readline';
 import { google } from 'googleapis';
@@ -37,7 +38,7 @@ const plugins: Array<Hapi.ServerRegisterPluginObject<any>> = [
 
  
 const server: Server = new Server({
-    port: process.env.PORT || 3000,
+    port: CONFIGS.PORT || 3000,
     router: {
       stripTrailingSlash: true,
     },

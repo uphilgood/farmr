@@ -39,6 +39,7 @@
     "@hapi/vision": "^6.0.0",
     "@types/hapi": "^18.0.3",
     "@types/nodemailer": "^6.4.0",
+    "dotenv": "^8.2.0",
     "googleapis": "^39.2.0",
     "lodash": "^4.17.19",
     "nodemailer": "^6.4.11"
