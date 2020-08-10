@@ -36,6 +36,15 @@
     "@hapi/hapi": "^19.2.0",
     "@hapi/inert": "^6.0.1",
     "@hapi/vision": "^6.0.0",
+<<<<<<< HEAD
     "@types/hapi": "^18.0.3"
+=======
+    "@types/hapi": "^18.0.3",
+    "@types/nodemailer": "^6.4.0",
+    "dotenv": "^8.2.0",
+    "googleapis": "^39.2.0",
+    "lodash": "^4.17.19",
+    "nodemailer": "^6.4.11"
+>>>>>>> c4db4a9... add env files into config
   }
 }

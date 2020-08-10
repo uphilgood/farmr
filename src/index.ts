@@ -2,9 +2,11 @@ import * as Hapi from '@hapi/hapi';
 import * as HapiSwagger from 'hapi-swagger';
 import * as Inert from "@hapi/inert";
 import * as Vision from "@hapi/vision";
+import * as Joi from "@hapi/joi";;
 import { Server } from "@hapi/hapi";
- 
-// code omitted for brevity
+import { postEvents } from './controller/events'
+import CONFIGS from './util/configs'
+
  
 const swaggerOptions: HapiSwagger.RegisterOptions = {
     info: {
@@ -26,7 +28,7 @@ const plugins: Array<Hapi.ServerRegisterPluginObject<any>> = [
 ];
  
 const server: Server = new Server({
-    port: process.env.PORT || 3000,
+    port: CONFIGS.PORT || 3000,
     router: {
       stripTrailingSlash: true,
     },
@@ -40,6 +42,29 @@ const server: Server = new Server({
         description: 'Get all produce',
         notes: 'Returns all produce',
         tags: ['api'], // ADD THIS TAG
+    },
+},
+{
+    method: 'POST',
+    path: '/addEvent',
+    options: {
+        handler: postEvents,
+        cors: {
+            origin: ["*"],
+            credentials: true,
+          },
+        description: 'Add delivery or pick up event',
+        notes: 'Sends SMTP email to admins to schedule delivery or pickup',
+        tags: ['api'], // ADD THIS TAG
+        validate: {
+            payload: Joi.object({
+                name: Joi.string(),
+                returnEmailAddress: Joi.string(),
+                date: Joi.date(),
+                method: Joi.string().allow('Delivery', 'Pick-up'),
+                body: Joi.string()
+            }).label("searchRequestPayload"),
+          },
     },
 }]);
   
