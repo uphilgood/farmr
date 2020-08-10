@@ -1,16 +1,11 @@
 import * as Hapi from '@hapi/hapi';
 import * as HapiSwagger from 'hapi-swagger';
 import * as Inert from "@hapi/inert";
-import * as Vision from "@hapi/vision"
+import * as Vision from "@hapi/vision";
 import * as Joi from "@hapi/joi";;
 import { Server } from "@hapi/hapi";
 import { postEvents } from './controller/events'
 import CONFIGS from './util/configs'
-import fs from 'fs';
-import readline from 'readline';
-import { google } from 'googleapis';
- 
-// code omitted for brevity
  
 const swaggerOptions: HapiSwagger.RegisterOptions = {
     info: {
@@ -55,16 +50,6 @@ const server: Server = new Server({
     },
 },
 {
-    method: 'GET',
-    path: '/events',
-    options: {
-        handler: () => ({produce: 'kale'}),
-        description: 'Get all produce',
-        notes: 'Returns all produce',
-        tags: ['api'], // ADD THIS TAG
-    },
-},
-{
     method: 'POST',
     path: '/addEvent',
     options: {
@@ -86,8 +71,7 @@ const server: Server = new Server({
             }).label("searchRequestPayload"),
           },
     },
-}
-]);
+}]);
   
   export const init = async () => {
     await server.initialize();
