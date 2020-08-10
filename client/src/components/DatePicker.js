@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import Typography from '@material-ui/core/Typography';
 import 'react-infinite-calendar/styles.css';
-import { getEvents, postEvent } from '../API/gcal/gcal'
 import Form from './Form'
 
 const useStyles = makeStyles((theme) => ({
@@ -33,10 +32,10 @@ const DatePicker = (props) => {
     const lastWeek = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate() - 7);
 
     useEffect(() => {
-        getEvents().then(events => {
-            const endDates = events.map(event => event.end);
-            setDisableDates(endDates)
-        })
+        // getEvents().then(events => {
+        //     const endDates = events.map(event => event.end);
+        //     setDisableDates(endDates)
+        // })
     }, []);
 
     const handleSelect = (date) => {
