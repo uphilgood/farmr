@@ -17,6 +17,7 @@ import Background from '../assets/produce_spread_mischief.jpg';
 import { useHistory } from 'react-router-dom';
 import SimpleModal from '../components/SimpleModal'
 import GoogleCalendar from '../components/GoogleCalendar'
+import DatePicker from '../components/DatePicker'
 
 
 function Copyright() {
@@ -70,7 +71,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [{
+    id: 1,
+    title: 'Korean BBQ Ssam Bundle',
+    quantity: 5,
+    description: 'All you need for your Korean BBQ at home!  Korean Peppers, perilla leaves and lettuce!',
+    image: 'https://www.thespruceeats.com/thmb/q0z-tMrCicv-Zw-gLu99hoj4i0k=/2000x1333/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-647372497-57a754ea3df78cf459087b8e.jpg',
+    status: 'available'
+}];
 
 export default function Home(props) {
   const classes = useStyles();
@@ -119,30 +127,30 @@ export default function Home(props) {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={card.id} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={Background}
+                    image={card.image}
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                     {card.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {card.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">
-                      View
+                      Details
                     </Button>
                     <Button onClick={() => setModalIsOpen(true)} size="small" color="primary">
-                      Edit
+                      Schedule Delivery
                     </Button>
-                    <SimpleModal isOpen={modalIsOpen}>
-                        <GoogleCalendar />
+                    <SimpleModal isOpen={modalIsOpen} close={() => setModalIsOpen(false)}>
+                        <DatePicker close={() => setModalIsOpen(false)}/>
                     </SimpleModal>
                   </CardActions>
                 </Card>

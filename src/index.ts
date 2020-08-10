@@ -6,7 +6,6 @@ import * as Joi from "@hapi/joi";;
 import { Server } from "@hapi/hapi";
 import { postEvents } from './controller/events'
 import CONFIGS from './util/configs'
-
  
 const swaggerOptions: HapiSwagger.RegisterOptions = {
     info: {
@@ -26,6 +25,12 @@ const plugins: Array<Hapi.ServerRegisterPluginObject<any>> = [
         options: swaggerOptions
     }
 ];
+
+
+
+
+
+
  
 const server: Server = new Server({
     port: CONFIGS.PORT || 3000,

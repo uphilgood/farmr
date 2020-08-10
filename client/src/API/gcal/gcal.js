@@ -3,6 +3,7 @@
 const CALENDAR_ID = 'philgoodmusic@gmail.com'
 const API_KEY = 'AIzaSyBHb1rrQXma9QRKh0p9XRxiqwomn5VWl_M'
 let url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`
+let postUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`
 
 
 export const getEvents = async () => {
@@ -24,3 +25,4 @@ export const getEvents = async () => {
     ));
     return data;
 }
+
